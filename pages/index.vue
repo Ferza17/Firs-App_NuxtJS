@@ -7,26 +7,7 @@
     <section class="intro">
       <h1>Get The latest tech news!</h1>
     </section>
-    <section class="featured-posts">
-      <nuxt-link :to="'/posts/' + 1" class="post-preview">
-        <article >
-          <div class="post-thumbnail" style="background-image: url('https://naturetechweb.files.wordpress.com/2016/11/nature-tech-0111.jpg?w=640&h=300&crop=1')"></div>
-          <div class="post-content">
-            <h1>Post Title</h1>
-            <p>Preview text</p>
-          </div>
-        </article>
-      </nuxt-link>
-      <nuxt-link :to="'/posts/' + 2" class="post-preview">
-        <article >
-          <div class="post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80')"></div>
-            <div class="post-content">
-              <h1>Post Title 2</h1>
-              <p>Preview text 2</p>
-            </div>
-        </article>
-      </nuxt-link>
-    </section>
+    
   </div>
 </template>
 
@@ -44,6 +25,7 @@ export default {
   position: relative;
   padding: 30px;
   box-sizing: border-box;
+  background-image: url('~assets/images/dell.jpg');
   background-position: center;
   background-size: cover;
 }
@@ -69,48 +51,7 @@ export default {
   }
 }
 
-.featured-posts {
-  display: flex;
-  padding: 20px;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
 
-.post-preview {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #ccc;
-  background-color: white;
-  width: 90%;
-}
 
-a {
-  text-decoration: none;
-  color: black;
-}
 
-@media (min-width: 850px) {
-  .post-preview {
-    width: 400px;
-    margin: 10px;
-  }
-}
-
-.post-thumbnail {
-  width: 100%;
-  height: 200px;
-  background-position: center;
-  background-size: cover;
-}
-
-.post-content {
-  padding: 10px;
-  text-align: center;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
-}
 </style>

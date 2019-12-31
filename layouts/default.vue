@@ -1,12 +1,27 @@
 <template>
         <div>
+            <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
+            <TheSidenav
+              :show="displaySidenav"
+              @close="displaySidenav = !displaySidenav" />
             <nuxt />
         </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue';
+import TheHeader from '@/components/Navigation/TheHeader.vue'
+import TheSidenav from '@/components/Navigation/TheSidenav.vue'
 export default {
+  components: {
+    TheHeader,
+    TheSidenav,
+  },
+  data () {
+    return {
+      displaySidenav: false
+    }
+  }
 }
 </script>
 
