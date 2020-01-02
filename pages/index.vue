@@ -7,16 +7,25 @@
     <section class="intro">
       <h1>Get The latest tech news!</h1>
     </section>
-    
+    <PostList 
+      :posts="loadedPosts" />
   </div>
 </template>
 
 <script>
 import Header from '~/components/Header.vue';
+import PostList from '~/components/Posts/PostList.vue';
 export default {
   components: {
-    Header
+    Header,
+    PostList
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    }
   }
+
 }
 </script>
 <style scoped>
