@@ -14,11 +14,9 @@
 
 <script>
 import Header from '~/components/Header.vue';
-import PostList from '~/components/Posts/PostList.vue';
 export default {
   components: {
     Header,
-    PostList
   },
   computed: {
     loadedPosts() {

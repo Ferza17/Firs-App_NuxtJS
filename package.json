@@ -11,8 +11,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/axios": "^5.9.2",
     "axios": "^0.19.0",
+    "firebase": "^7.6.1",
+    "firestore": "^1.1.6",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {

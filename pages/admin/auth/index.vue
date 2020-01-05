@@ -1,9 +1,9 @@
 <template>
   <div class="admin-auth-page">
     <div class="auth-container">
-      <form>
-        <AppControlInput type="email">E-Mail Address</AppControlInput>
-        <AppControlInput type="password">Password</AppControlInput>
+      <form @submit.prevent="onSubmit">
+        <AppControlInput v-model="email" type="email">E-Mail Address</AppControlInput>
+        <AppControlInput v-model="password" type="password">Password</AppControlInput>
         <AppButton type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</AppButton>
         <AppButton
           type="button"
@@ -16,20 +16,51 @@
 </template>
 
 <script>
-import AppControlInput from '@/components/UI/AppControlInput'
-import AppButton from '@/components/UI/AppButton'
-
+import firebase from 'firebase';
 export default {
   name: 'AdminAuthPage',
   layout: 'admin',
-  components: {
-    AppControlInput,
-    AppButton
-  },
   data() {
     return {
-      isLogin: true
+      isLogin: true,
+      email: '',
+      password: ''
     }
+  },
+  methods: {
+    onSubmit () {
+    //  return this.$axios.$post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + 
+    //   process.env.fbAPIKey, {
+    //     email: this.email ,
+    //     password: this.password, 
+    //     returnSecureToken: true
+    //   })
+    //   .then(res => {
+    //     console.log('[res]', res)
+    //   })
+    //   .catch(err => console.log(err))
+    console.log(this.isLogin);
+      if(!this.isLogin) {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .then(res => console.log(res))
+          .catch(err => console.log(err))
+      }else {
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            this.$router.push('/')
+          })
+      }
+    }
+  },
+  beforeCreate() {
+    console.log('[process.env.fbAPIKey]', process.env.fbAPIKey)
   }
 }
 </script>

@@ -6,12 +6,12 @@ export default {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s - ' + 'My First awesome Nuxtjs Apps',
+    title: 'WD Blog',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: 'My Cools Website using nuxtjs' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -21,7 +21,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#fa923f', height: '4px', duration: 5000 },
   /*
   ** Global CSS
   */
@@ -32,6 +32,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~plugins/core-components.js',
+    '~plugins/date-filters.js',
+    '~plugins/firebaseConfig.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -51,6 +54,8 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL : process.env.BASE_URL || 'https://nuxt-blog-291a4.firebaseio.com',
+    credentials: false
   },
   /*
   ** vuetify module configuration
@@ -81,6 +86,24 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-291a4.firebaseio.com',
+    fbAPIKey: 'AIzaSyANwEpYIH1EMXiy8k2UXDhOPzq-QHLtTTw',
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
+  },
+  router: {
+    linkActiveClass: 'active',
+    middleware: 'log',
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '*',
+        component: resolve(__dirname, 'pages/index.vue')
+      })
     }
   }
 }

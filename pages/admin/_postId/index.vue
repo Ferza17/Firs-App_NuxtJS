@@ -10,17 +10,16 @@
 
 <script>
 import AdminPostForm from '@/components/Admin/AdminPostForm.vue';
-import axios from 'axios';
 export default {
     layout: 'admin',
     components: {
         AdminPostForm
     },
     asyncData(context) {
-        return axios.get('https://nuxt-blog-291a4.firebaseio.com/posts/'+ context.params.postId +'.json')
-            .then(res => {
+        return context.app.$axios.$get('/posts/'+ context.params.postId +'.json')
+            .then(data => {
                 return {
-                    loadedPost: {...res.data, id: context.params.postId}
+                    loadedPost: {...data, id: context.params.postId}
                 }
             })
             .catch(err => context.error(error))
